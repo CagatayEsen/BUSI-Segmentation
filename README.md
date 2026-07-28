@@ -29,3 +29,17 @@ The entire workflow, from data downloading to classical method evaluations, deep
 1. Open `BUSI_Segmentation_Pipeline.ipynb` in Google Colab.
 2. Provide your Kaggle API token (`kaggle.json`) when prompted to download the BUSI dataset automatically.
 3. Run the cells sequentially. Model weights (checkpoints) and evaluation outputs are configured to save directly to your mounted Google Drive.
+   
+## Quantitative Results
+
+The table below summarizes the performance comparison between fully automated classical image processing techniques and our proposed deep learning ensemble methods across all images in the dataset. Classical methods significantly struggle with the complex artifacts inherent in ultrasound images. In contrast, the UNet++ ensemble achieves superior segmentation performance.
+
+| Method | Mode | Accuracy (%) | Dice Score (DSC) (%) | IoU (%) |
+| :--- | :---: | :---: | :---: | :---: |
+| Otsu's Thresholding | Auto | 52.35 | 17.37 | 10.83 |
+| Region Growing | Auto | 81.51 | 5.90 | 3.56 |
+| Watershed | Auto | 19.94 | 14.69 | 8.99 |
+| UNet Ensemble | DL | 96.78 | 82.56 | 76.10 |
+| **UNet++ Ensemble (Ours)** | **DL** | **96.85** | **83.06** | **76.38** |
+
+*(Note: The deep learning models were evaluated using a rigorous 5-fold cross-validation strategy combined with Test-Time Augmentation).*
