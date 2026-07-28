@@ -1,8 +1,0 @@
-mode,method,dice,iou,acc
-auto,Otsu,17.37,10.83,52.35
-auto,RegionGrowing,5.9,3.56,81.51
-auto,Watershed,14.69,8.99,19.94
-dl,UNet++Ensemble,80.63,74.18,96.79
-oracle,Otsu,69.62,56.8,90.7
-oracle,RegionGrowing,55.03,43.72,92.39
-oracle,Watershed,80.87,70.35,91.84
