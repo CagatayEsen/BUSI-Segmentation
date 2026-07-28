@@ -1,28 +1,31 @@
-# Breast Ultrasound Image Segmentation using UNet++ Ensemble
+# Breast Ultrasound Image Segmentation: Classical vs. Deep Learning Ensemble
 
-This repository contains the official PyTorch implementation of the breast ultrasound image segmentation pipeline, utilizing a 5-fold ensemble of UNet++ architectures with EfficientNet-B4 encoders. 
+This repository contains the official PyTorch implementation of a comprehensive breast ultrasound image segmentation pipeline. The project compares classical image processing techniques with a robust deep learning ensemble approach.
 
-## Overview
-The primary objective of this project is to provide a robust and highly accurate segmentation model for breast ultrasound images. The pipeline compares classical image processing methods (e.g., Watershed, Region Growing) with a deep learning-based approach. To enhance generalization, the deep learning pipeline employs a 5-fold cross-validation strategy, and the final predictions are aggregated using Test-Time Augmentation (TTA).
+## Dataset and Preprocessing
+The model is developed and evaluated using the **Breast Ultrasound Images (BUSI)** dataset. 
 
-## Dataset
-The model is trained and evaluated on the **Breast Ultrasound Images (BUSI)** dataset. The pipeline handles data preparation, stratification, and validation strictly without data leakage.
+* **Data Preparation:** The pipeline strictly prevents data leakage by implementing robust train/validation/test splits. 
+* **Preprocessing:** Raw ultrasound images often contain artifacts such as text and medical markers. An OCR-based text removal algorithm is applied to clean the images before processing. Additionally, for images containing multiple tumor masks, the masks are merged into a single binary ground truth mask using a logical OR operation. Normal (tumor-free) images are also included in the training and evaluation phases.
 
-## Computational Cost Analysis
-To demonstrate the practical feasibility of our approach for computer-aided diagnosis (CAD) systems, inference and computational load were explicitly evaluated on an NVIDIA T4 GPU:
+## Methodology
+The project explores two distinct approaches to medical image segmentation:
 
-* **Model Complexity:** A single UNet++ (EfficientNet-B4) model contains **3.39 Million parameters**.
-* **Computational Load:** A single forward pass requires **15.84 GFLOPs** (for a 256x256 input).
-* **Inference Speed:**
-  * Single Model Inference Time: **61.39 ms**
-  * Full Ensemble Pipeline (5 models x 4 TTA configurations = 20 forward passes): **1227.76 ms**
-  * System Speed: **0.81 FPS**
+### 1. Classical Segmentation
+As a baseline, traditional image processing algorithms are implemented and evaluated without deep learning interventions. The classical pipeline relies on:
+* Otsu's Thresholding
+* Watershed Algorithm
+* Region Growing
 
-These metrics confirm that the proposed ensemble method operates efficiently while preserving high segmentation accuracy.
+### 2. Deep Learning Ensemble
+The primary and most accurate approach relies on deep convolutional neural networks:
+* **Architecture:** UNet++ equipped with an EfficientNet-B4 encoder.
+* **Validation Strategy:** A strict 5-fold cross-validation protocol is used to ensure the model's generalizability and to prevent overfitting.
+* **Ensemble and TTA:** At inference, the predictions from the 5 independent fold models are aggregated. Each model's output is further stabilized using Test-Time Augmentation (TTA), specifically averaging over four flip configurations (identity, vertical, horizontal, and both axes). The final combined probability map is thresholded at 0.5 to produce the ultimate segmentation mask.
 
 ## Usage
-The entire workflow, including data downloading, preprocessing, classical method evaluations, deep learning training, and statistical comparisons, is encapsulated within a single Jupyter Notebook. 
+The entire workflow, from data downloading to classical method evaluations, deep learning training, and statistical comparisons, is encapsulated within a single Jupyter Notebook.
 
 1. Open `BUSI_Segmentation_Pipeline.ipynb` in Google Colab.
-2. Provide your Kaggle API token (`kaggle.json`) when prompted to download the BUSI dataset.
-3. Run the cells sequentially. Checkpoints and outputs will be automatically saved to your mounted Google Drive.
+2. Provide your Kaggle API token (`kaggle.json`) when prompted to download the BUSI dataset automatically.
+3. Run the cells sequentially. Model weights (checkpoints) and evaluation outputs are configured to save directly to your mounted Google Drive.
