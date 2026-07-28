@@ -32,14 +32,22 @@ The entire workflow, from data downloading to classical method evaluations, deep
    
 ## Quantitative Results
 
-The table below summarizes the performance comparison between fully automated classical image processing techniques and our proposed deep learning ensemble methods across all images in the dataset. Classical methods significantly struggle with the complex artifacts inherent in ultrasound images. In contrast, the UNet++ ensemble achieves superior segmentation performance.
+The table below presents a comprehensive performance comparison between classical image processing techniques and our proposed deep learning ensemble methods. The classical methods were evaluated under two conditions: **Auto** (fully automated) and **Oracle** (using ideal seed points/thresholds). 
 
-| Method | Mode | Accuracy (%) | Dice Score (DSC) (%) | IoU (%) |
-| :--- | :---: | :---: | :---: | :---: |
-| Otsu's Thresholding | Auto | 52.35 | 17.37 | 10.83 |
-| Region Growing | Auto | 81.51 | 5.90 | 3.56 |
-| Watershed | Auto | 19.94 | 14.69 | 8.99 |
-| UNet Ensemble | DL | 96.78 | 82.56 | 76.10 |
-| **UNet++ Ensemble (Ours)** | **DL** | **96.85** | **83.06** | **76.38** |
+The deep learning approaches, particularly our **UNet++ Ensemble**, significantly outperform all fully automated classical methods and consistently exceed even the Oracle-guided classical techniques.
 
-*(Note: The deep learning models were evaluated using a rigorous 5-fold cross-validation strategy combined with Test-Time Augmentation).*
+| | | All images | | | Lesion-only | | |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Method** | **Mode** | **DSC (%)** | **IoU (%)** | **Acc (%)** | **DSC (%)** | **IoU (%)** | **Acc (%)** |
+| Otsu | Auto | 17.37 | 10.83 | 52.35 | 21.00 | 13.10 | 52.98 |
+| Region Growing | Auto | 5.90 | 3.56 | 81.51 | 7.14 | 4.31 | 80.77 |
+| Watershed | Auto | 14.69 | 8.99 | 19.94 | 17.77 | 10.87 | 21.53 |
+| | | | | | | | |
+| Otsu | Oracle | 69.62 | 56.80 | 90.70 | 63.26 | 47.76 | 88.75 |
+| Region Growing | Oracle | 55.03 | 43.72 | 92.39 | 45.62 | 31.94 | 90.79 |
+| Watershed | Oracle | 80.87 | 70.35 | 91.84 | 76.86 | 64.14 | 90.13 |
+| | | | | | | | |
+| UNet Ensemble | DL | 82.56 | 76.10 | 96.78 | 80.45 | 72.65 | 96.15 |
+| **UNet++ Ensemble** | **DL** | **83.06** | **76.38** | **96.85** | **82.62** | **74.53** | **96.28** |
+
+*(Note: The deep learning (DL) models were evaluated using a rigorous 5-fold cross-validation strategy combined with Test-Time Augmentation).*
