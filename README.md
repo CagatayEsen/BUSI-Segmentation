@@ -47,6 +47,10 @@ The deep learning approaches, particularly our **UNet++ Ensemble**, significantl
 | Region Growing | Oracle | 55.03 | 43.72 | 92.39 | 45.62 | 31.94 | 90.79 |
 | Watershed | Oracle | 80.87 | 70.35 | 91.84 | 76.86 | 64.14 | 90.13 |
 | | | | | | | | |
+
+The figure below illustrates the segmentation performance of our UNet++ Ensemble model compared to the ground truth provided by medical experts. The deep learning model successfully delineates both benign and malignant tumors with high precision.
+
+![Qualitative Results](figures/fig_qualitative_panel.jpg)
 | UNet Ensemble | DL | 82.56 | 76.10 | 96.78 | 80.45 | 72.65 | 96.15 |
 | **UNet++ Ensemble** | **DL** | **83.06** | **76.38** | **96.85** | **82.62** | **74.53** | **96.28** |
 
