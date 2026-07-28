@@ -49,7 +49,9 @@ The deep learning approaches, particularly our **UNet++ Ensemble**, significantl
 | | | | | | | | |
 | UNet Ensemble | DL | 82.56 | 76.10 | 96.78 | 80.45 | 72.65 | 96.15 |
 | **UNet++ Ensemble** | **DL** | **83.06** | **76.38** | **96.85** | **82.62** | **74.53** | **96.28** |
+
 *(Note: The deep learning (DL) models were evaluated using a rigorous 5-fold cross-validation strategy combined with Test-Time Augmentation).*
+
 The figure below illustrates the segmentation performance of our UNet++ Ensemble model compared to the ground truth provided by medical experts. The deep learning model successfully delineates both benign and malignant tumors with high precision.
 ![Qualitative Results](figures/fig_qualitative_panel.png)
 
