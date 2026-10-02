@@ -34,7 +34,7 @@ The entire workflow, from data downloading to classical method evaluations, deep
 
 The table below presents a comprehensive performance comparison between classical image processing techniques and our proposed deep learning ensemble methods. The classical methods were evaluated under two conditions: **Auto** (fully automated) and **Oracle** (using ideal seed points/thresholds). 
 
-The deep learning approaches, particularly our **UNet++ Ensemble**, significantly outperform all fully automated classical methods and consistently exceed even the Oracle-guided classical techniques.
+The deep learning approaches, particularly our **UNet++ Ensemble**, significantly outperform all fully automated Classical Methods and consistently exceed even the Oracle-guided classical techniques.
 
 | | | All images | | | Lesion-only | | |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
